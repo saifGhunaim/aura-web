@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hero_cta: "Discover Our Sanctuaries",
             about_title: "The Philosophy",
             about_text: "Luxury is not necessarily loud. We create a unique balance between absolute opulence in design details and static calmness in the space. We are inspired by the ancient memory of the UAE desert and sea, translated into a contemporary design language.",
-            features_title: "Signature",
+            features_title: "Signature Elements",
             feature_1_title: "The Liquid Wall",
             feature_1_desc: "Walls of cast gypsum or carved wood with organic lines inspired by desert sand, creating a dramatic play of light and shadow.",
             feature_2_title: "Light Sculpting",
