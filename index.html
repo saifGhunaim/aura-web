@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | We Design Life</title>
-    <meta name="description" content="AURA: We Design Life. Interior design firm inspired by the UAE desert and sea.">
+    <title>AURA | Serenity is the ultimate form of Opulence</title>
+    <meta name="description"
+        content="AURA: Serenity is the ultimate form of Opulence. Interior design firm inspired by the UAE desert and sea.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +26,8 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
-            <img src="assets/images/aura-logo.png" alt="AURA - We Design Life" class="logo-img">
+            <img src="assets/images/aura-logo.png" alt="AURA - Serenity is the ultimate form of Opulence"
+                class="logo-img">
         </div>
         <div class="hamburger">
             <span class="bar"></span>
@@ -43,13 +48,27 @@
 
     <!-- Hero Section -->
     <header class="hero" id="home">
-        <div class="hero-bg" id="hero-bg"
-            style="background-image: url('assets/images/hero_background_1764015262273.png');"></div>
+        <div class="hero-slider" id="hero-slider">
+            <div class="slide active" style="background-image: url('assets/images/hero_background_1764015262273.png');">
+            </div>
+            <div class="slide" style="background-image: url('assets/images/feature_liquid_wall_1764015288226.png');">
+            </div>
+            <div class="slide"
+                style="background-image: url('assets/images/feature_light_sculpting_1764015301546.png');"></div>
+            <div class="slide"
+                style="background-image: url('assets/images/feature_material_surprise_1764015352697.png');"></div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-arrow prev" id="prev-slide" aria-label="Previous Slide">&#10094;</button>
+            <button class="slider-arrow next" id="next-slide" aria-label="Next Slide">&#10095;</button>
+        </div>
         <div class="hero-content">
-            <h1 class="fade-in" data-i18n="hero_title">AURA</h1>
-            <h2 class="fade-in delay-1" data-i18n="hero_subtitle">We Design Life</h2>
+            <h1 class="fade-in scroll-animate" id="hero-title" data-i18n="hero_title">AURA</h1>
+            <h2 class="fade-in delay-1" data-i18n="hero_subtitle">when serenity is the luxury<br>of space</h2>
             <a href="#portfolio" class="cta-btn fade-in delay-2" data-i18n="hero_cta">Discover Our Sanctuaries</a>
         </div>
+        <div class="hero-tagline fade-in delay-2" data-i18n="hero_tagline">We craft luxury rooted in authenticity and
+            sculpted by light and serenity</div>
     </header>
 
     <!-- About Us Section -->
@@ -58,7 +77,8 @@
             <div class="about-us-content fade-in-scroll">
                 <h3 class="section-title" data-i18n="about_us_title">About AURA</h3>
                 <div class="about-us-text">
-                    <p data-i18n="about_us_intro">At AURA, we see design as the art of building sanctuaries. Our
+                    <p data-i18n="about_us_intro">At <span class="aura-highlight">AURA</span>, we see design as the art
+                        of building sanctuaries. Our
                         philosophy is rooted in the concept of <strong>"Opulent Serenity"</strong>: the delicate balance
                         between bold luxury and absolute tranquility. We reject visual noise in favor of organic lines,
                         natural materials, and exquisite details that whisper sophistication.</p>
@@ -84,10 +104,9 @@
                                 surprises in texture and light</span>
                         </li>
                     </ul>
-
-                    <p class="about-us-tagline" data-i18n="about_us_tagline"><strong>AURA: We Design Life.</strong></p>
                 </div>
             </div>
+            <p class="about-us-tagline" data-i18n="about_us_tagline"><strong>We design life</strong></p>
         </div>
     </section>
 
@@ -177,7 +196,8 @@
             <p class="contact-subtitle fade-in-scroll delay-1" data-i18n="contact_subtitle">Invest in opulent serenity
                 for your space. We would be delighted to begin the journey of crafting your architectural sanctuary.</p>
 
-            <form class="contact-form fade-in-scroll delay-2" id="contactForm">
+            <form class="contact-form fade-in-scroll delay-2" id="contactForm"
+                action="https://formsubmit.co/saifgh2007@gmail.com" method="POST">
                 <div class="form-group">
                     <input type="text" id="name" name="name" placeholder="Name" required>
                 </div>
@@ -207,7 +227,8 @@
                         detail.</p>
                 </div>
                 <div class="footer-right">
-                    <img src="assets/images/aura-footer-logo.png" alt="AURA - We Design Life" class="footer-logo-img">
+                    <img src="assets/images/aura-footer-logo.png" alt="AURA - Serenity is the ultimate form of Opulence"
+                        class="footer-logo-img">
                 </div>
             </div>
             <div class="footer-bottom">
