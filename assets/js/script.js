@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             heroTitle.classList.remove('initial-load');
             // Ensure it stays at normal visual size
-            heroTitle.style.transform = 'scale(0.0333)';
+            heroTitle.style.transform = 'scale(0.05)';
             heroTitle.style.opacity = '1';
 
             // Enable scroll-based zoom
@@ -105,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const scrollProgress = Math.min(scrollY / (heroHeight * 0.8), 1);
 
                 if (scrollY < heroHeight) {
-                    // Zoom from 0.0333 (normal) to 1 (massive) as user scrolls down
+                    // Zoom from 0.05 (normal) to 1 (massive) as user scrolls down
                     // Formula: start + (range * progress)
-                    // Range = 1 - 0.0333 = 0.9667
-                    const scale = 0.0333 + (0.9667 * scrollProgress);
+                    // Range = 1 - 0.05 = 0.95
+                    const scale = 0.05 + (0.95 * scrollProgress);
                     const opacity = 1 - (0.8 * scrollProgress); // Fade out faster
 
                     heroTitle.style.transform = `scale(${scale})`;
