@@ -16,14 +16,105 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Parallax Effect
-    const heroBg = document.getElementById('hero-bg');
+    // Hero Slider Logic
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prev-slide');
+    const nextBtn = document.getElementById('next-slide');
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        // Handle wrapping
+        if (index >= slides.length) currentSlide = 0;
+        else if (index < 0) currentSlide = slides.length - 1;
+        else currentSlide = index;
+
+        slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    function startSlideShow() {
+        slideInterval = setInterval(nextSlide, 5000); // Change every 5 seconds
+    }
+
+    function stopSlideShow() {
+        clearInterval(slideInterval);
+    }
+
+    if (slides.length > 0) {
+        // Event Listeners
+        if (nextBtn) nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopSlideShow();
+            startSlideShow(); // Reset timer
+        });
+
+        if (prevBtn) prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopSlideShow();
+            startSlideShow(); // Reset timer
+        });
+
+        // Start auto-play
+        startSlideShow();
+    }
+
+    // Parallax Effect (Modified for slider container)
+    const heroSlider = document.getElementById('hero-slider');
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
-        if (scrollY < window.innerHeight) {
-            heroBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+        if (scrollY < window.innerHeight && heroSlider) {
+            heroSlider.style.transform = `translateY(${scrollY * 0.5}px)`;
         }
     });
+
+    // Hero Title Scroll Animation - Initial zoom then scroll-based zoom
+    const heroTitle = document.getElementById('hero-title');
+
+    if (heroTitle) {
+        // Set initial tiny state before animation
+        heroTitle.style.transform = 'scale(0.1)';
+        heroTitle.style.opacity = '0';
+
+        // Start the animation after a brief delay
+        setTimeout(() => {
+            heroTitle.classList.add('initial-load');
+        }, 100);
+
+        // After initial animation completes, enable scroll-based zoom
+        setTimeout(() => {
+            heroTitle.classList.remove('initial-load');
+            // Ensure it stays at normal size
+            heroTitle.style.transform = 'scale(1)';
+            heroTitle.style.opacity = '1';
+
+            // Enable scroll-based zoom
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const heroHeight = window.innerHeight;
+
+                // Calculate scroll progress (0 to 1)
+                const scrollProgress = Math.min(scrollY / (heroHeight * 0.8), 1);
+
+                if (scrollY < heroHeight) {
+                    // Zoom from 1x to 30x as user scrolls down
+                    const scale = 1 + (29 * scrollProgress);
+                    const opacity = 1 - (0.6 * scrollProgress);
+
+                    heroTitle.style.transform = `scale(${scale})`;
+                    heroTitle.style.opacity = opacity;
+                }
+            });
+        }, 900); // Wait for faster animation to complete (0.8s animation + 100ms delay)
+    }
 
     // Placeholder Image Loader (Simulating lazy load or just handling the divs)
     // In a real scenario, we would replace the divs with <img> tags once we have the URLs.
@@ -58,8 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_portfolio: "Portfolio",
             nav_contact: "Contact",
             hero_title: "AURA",
-            hero_subtitle: "We Design Life",
+            hero_subtitle: "when serenity is the luxury<br>of space",
             hero_cta: "Discover Our Sanctuaries",
+            hero_tagline: "We craft luxury rooted in authenticity and sculpted by light and serenity",
             about_title: "The Philosophy",
             about_text: "Luxury is not necessarily loud. We create a unique balance between absolute opulence in design details and static calmness in the space. We are inspired by the ancient memory of the UAE desert and sea, translated into a contemporary design language.",
             features_title: "Signature Elements",
@@ -75,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             contact_subtitle: "Invest in opulent serenity for your space. We would be delighted to begin the journey of crafting your architectural sanctuary.",
             contact_btn: "Send Us Your Vision!",
             about_us_title: "About AURA",
-            about_us_intro: "At AURA, we see design as the art of building sanctuaries. Our philosophy is rooted in the concept of \"Opulent Serenity\": the delicate balance between bold luxury and absolute tranquility. We reject visual noise in favor of organic lines, natural materials, and exquisite details that whisper sophistication.",
+            about_us_intro: "At <span class=\"aura-highlight\">AURA</span>, we see design as the art of building sanctuaries. Our philosophy is rooted in the concept of \"Opulent Serenity\": the delicate balance between bold luxury and absolute tranquility. We reject visual noise in favor of organic lines, natural materials, and exquisite details that whisper sophistication.",
             about_us_vision_title: "Our Vision",
             about_us_vision: "To become the primary reference for creating spaces that breathe, inspire, and immerse their inhabitants in a profound sense of peace and rootedness.",
             about_us_values_title: "Our Core Values",
@@ -85,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             about_us_value_2_desc: "Preserving material authenticity and the warmth of place",
             about_us_value_3_title: "Boldness:",
             about_us_value_3_desc: "Challenging the conventional through masterful surprises in texture and light",
-            about_us_tagline: "AURA: We Design Life."
+            about_us_tagline: "We design life"
         },
         ar: {
             brand: "AURA",
@@ -95,8 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_portfolio: "المعرض",
             nav_contact: "تواصل معنا",
             hero_title: "AURA",
-            hero_subtitle: "We Design Life",
+            hero_subtitle: "حين تكون السكينة فخامة المساحة",
             hero_cta: "اكتشف ملاذاتنا",
+            hero_tagline: "نصنع الفخامة متجذرة في الأصالة ومنحوتة بالضوء والسكينة",
             about_title: "الفلسفة",
             about_text: "الفخامة ليست بالضرورة صاخبة. نحن نحقق توازناً فريداً بين الترف المطلق في تفاصيل التصميم والهدوء الساكن في حضور المساحة. نستلهم الذاكرة العريقة لصحراء وبحر الإمارات، ونصوغها بلغة تصميم معاصرة.",
             features_title: "عناصر البصمة",
@@ -112,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             contact_subtitle: "استثمر في الهدوء المترف لمساحتك. يسعدنا أن نبدأ رحلة صياغة ملاذك المعماري.",
             contact_btn: "أرسل لنا رؤيتك!",
             about_us_title: "AURA عن",
-            about_us_intro: "في AURA، نرى التصميم فناً لبناء الملاذات. فلسفتنا متجذرة في مفهوم \"الهدوء المترف\": التوازن الدقيق بين الفخامة الجريئة والسكينة المطلقة. نرفض الضجيج البصري لصالح الخطوط العضوية والمواد الطبيعية والتفاصيل الرائعة التي تهمس بالرقي.",
+            about_us_intro: "في <span class=\"aura-highlight\">AURA</span>، نرى التصميم فناً لبناء الملاذات. فلسفتنا متجذرة في مفهوم \"الهدوء المترف\": التوازن الدقيق بين الفخامة الجريئة والسكينة المطلقة. نرفض الضجيج البصري لصالح الخطوط العضوية والمواد الطبيعية والتفاصيل الرائعة التي تهمس بالرقي.",
             about_us_vision_title: "رؤيتنا",
             about_us_vision: "أن نصبح المرجع الأساسي لخلق مساحات تتنفس، تلهم، وتغمر سكانها بإحساس عميق بالسلام والتجذر.",
             about_us_values_title: "قيمنا الأساسية",
@@ -122,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             about_us_value_2_desc: "الحفاظ على أصالة المواد ودفء المكان",
             about_us_value_3_title: "الجرأة:",
             about_us_value_3_desc: "تحدي التقليدي من خلال مفاجآت بارعة في الملمس والضوء",
-            about_us_tagline: "AURA: We Design Life."
+            about_us_tagline: "We design life"
         }
     };
 
@@ -147,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                element.textContent = translations[lang][key];
+                element.innerHTML = translations[lang][key];
             }
         });
 
@@ -169,12 +262,39 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const currentLang = document.documentElement.lang;
-            const message = currentLang === 'ar'
-                ? "شكراً لتواصلك معنا! سنقوم بالرد عليك قريباً."
-                : "Thank you for contacting us! We will get back to you soon.";
-            alert(message);
-            contactForm.reset();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.disabled = true;
+            submitBtn.innerText = document.documentElement.lang === 'ar' ? "جاري الإرسال..." : "Sending...";
+
+            const formData = new FormData(contactForm);
+
+            fetch("https://formsubmit.co/ajax/saifgh2007@gmail.com", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const currentLang = document.documentElement.lang;
+                    const message = currentLang === 'ar'
+                        ? "شكراً لتواصلك معنا! سنقوم بالرد عليك قريباً."
+                        : "Thank you for contacting us! We will get back to you soon.";
+                    alert(message);
+                    contactForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const currentLang = document.documentElement.lang;
+                    const message = currentLang === 'ar'
+                        ? "عذراً، حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى."
+                        : "Sorry, something went wrong. Please try again.";
+                    alert(message);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalBtnText;
+                });
         });
     }
 });
