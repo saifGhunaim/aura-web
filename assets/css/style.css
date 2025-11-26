@@ -86,14 +86,15 @@ section,
     direction: ltr !important;
 }
 
-/* Protect hero title "AURA: We Design Life" */
+/* Protect hero title "AURA: Serenity is the ultimate form of Opulence" */
 .hero h1,
 [data-i18n="hero_title"] {
     font-family: var(--font-heading-en) !important;
     direction: ltr !important;
 }
 
-/* Protect hero subtitle "We Design Life" */
+/* Protect hero subtitle "Serenity is the ultimate form of Opulence" */
+/* Keep "Serenity is the ultimate form of Opulence" in English always */
 .hero h2,
 [data-i18n="hero_subtitle"] {
     font-family: var(--font-heading-en) !important;
@@ -185,6 +186,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin-left: -1.5rem;
 }
 
 .logo-img {
@@ -263,19 +265,67 @@ a {
     overflow: hidden;
 }
 
-.hero-bg {
+.hero-slider {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 120%;
-    /* For parallax */
-    background-color: #ddd;
-    /* Placeholder */
+    /* For parallax if needed, or 100% if fixed */
+    z-index: -1;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: -1;
-    transition: transform 0.1s linear;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--spacing-md);
+    z-index: 10;
+    pointer-events: none;
+    /* Let clicks pass through container */
+}
+
+.slider-arrow {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    /* Re-enable clicks on buttons */
+    backdrop-filter: blur(5px);
+}
+
+.slider-arrow:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
 }
 
 .hero-content {
@@ -296,6 +346,45 @@ a {
     font-weight: 400;
     margin-bottom: var(--spacing-lg);
     color: #f0f0f0;
+}
+
+/* Scroll Animation for Hero Title */
+.scroll-animate {
+    transition: transform 0.3s ease-out,
+        opacity 0.3s ease-out;
+    transform-origin: center center;
+    /* Default to normal size */
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Initial load animation */
+.scroll-animate.initial-load {
+    animation: zoomToNormal 0.8s ease-out forwards;
+}
+
+@keyframes zoomToNormal {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.scroll-animate.scroll-in {
+    /* Normal size when scrolled in */
+    transform: scale(1);
+    opacity: 1;
+}
+
+.scroll-animate.scroll-out {
+    /* Zoom to massive size when scrolling out */
+    transform: scale(30);
+    opacity: 0.4;
 }
 
 .cta-btn {
@@ -320,6 +409,29 @@ a {
 .cta-btn:hover {
     background-color: white;
     color: var(--color-accent);
+}
+
+/* Hero Tagline */
+.hero-tagline {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    color: white;
+    font-size: 0.95rem;
+    font-family: var(--font-body-en);
+    letter-spacing: 0.5px;
+    max-width: 400px;
+    line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+    text-align: left;
+}
+
+[dir="rtl"] .hero-tagline {
+    left: auto;
+    right: 3rem;
+    text-align: right;
+    font-family: var(--font-body-ar);
 }
 
 /* Sections */
@@ -354,6 +466,8 @@ section {
 .about-us {
     background-color: var(--color-bg-alt);
     padding: var(--spacing-xl) var(--spacing-lg);
+    position: relative;
+    padding-bottom: calc(var(--spacing-xl) + 6rem);
 }
 
 .about-us-content {
@@ -427,18 +541,34 @@ section {
 }
 
 .about-us-tagline {
-    margin-top: var(--spacing-lg);
-    font-size: 1.3rem;
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
     color: var(--color-accent);
-    font-style: italic;
+    font-style: normal;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    width: auto;
+    white-space: nowrap;
 }
 
-/* Keep "We Design Life" in English always */
+/* Keep "We design life" in English always */
 .about-us-tagline,
 [data-i18n="about_us_tagline"] {
     font-family: var(--font-heading-en) !important;
     direction: ltr !important;
 }
+
+/* Highlight AURA in body text with heading color */
+.aura-highlight {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+
 
 /* About */
 .about {
@@ -711,6 +841,18 @@ section {
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 2.5rem;
+    }
+
+    .hero-tagline {
+        bottom: 1.5rem;
+        left: 1.5rem;
+        font-size: 0.8rem;
+        max-width: 280px;
+    }
+
+    [dir="rtl"] .hero-tagline {
+        left: auto;
+        right: 1.5rem;
     }
 
     .about .container {
