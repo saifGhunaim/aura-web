@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (heroTitle) {
         // Set initial tiny state before animation
-        heroTitle.style.transform = 'scale(0.1)';
+        heroTitle.style.transform = 'scale(0.001)';
         heroTitle.style.opacity = '0';
 
         // Start the animation after a brief delay
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // After initial animation completes, enable scroll-based zoom
         setTimeout(() => {
             heroTitle.classList.remove('initial-load');
-            // Ensure it stays at normal size
-            heroTitle.style.transform = 'scale(1)';
+            // Ensure it stays at normal visual size
+            heroTitle.style.transform = 'scale(0.0333)';
             heroTitle.style.opacity = '1';
 
             // Enable scroll-based zoom
@@ -105,15 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const scrollProgress = Math.min(scrollY / (heroHeight * 0.8), 1);
 
                 if (scrollY < heroHeight) {
-                    // Zoom from 1x to 30x as user scrolls down
-                    const scale = 1 + (29 * scrollProgress);
-                    const opacity = 1 - (0.6 * scrollProgress);
+                    // Zoom from 0.0333 (normal) to 1 (massive) as user scrolls down
+                    // Formula: start + (range * progress)
+                    // Range = 1 - 0.0333 = 0.9667
+                    const scale = 0.0333 + (0.9667 * scrollProgress);
+                    const opacity = 1 - (0.8 * scrollProgress); // Fade out faster
 
                     heroTitle.style.transform = `scale(${scale})`;
                     heroTitle.style.opacity = opacity;
                 }
             });
-        }, 900); // Wait for faster animation to complete (0.8s animation + 100ms delay)
+        }, 1300); // Wait for animation to complete (1.2s + 100ms)
     }
 
     // Placeholder Image Loader (Simulating lazy load or just handling the divs)
