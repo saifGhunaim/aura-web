@@ -338,8 +338,8 @@ a {
 .hero h1 {
     font-size: 120rem;
     /* Massive base size for vector quality */
-    margin-bottom: 8rem;
-    /* Visual spacing for the scaled-down text */
+    margin-bottom: 3.5rem;
+    /* Reduced spacing to bring elements closer */
     color: white;
     /* Prevent layout issues with huge text */
     line-height: 0;
@@ -357,7 +357,8 @@ a {
 .hero h2 {
     font-size: 2rem;
     font-weight: 400;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    /* Reduced from lg to md */
     color: #f0f0f0;
 }
 
@@ -366,8 +367,8 @@ a {
     transition: transform 0.1s linear, opacity 0.1s linear;
     /* Faster, linear for smoother scroll sync */
     transform-origin: center center;
-    /* Default to normal visual size (120rem * 0.0333 ≈ 4rem) */
-    transform: scale(0.0333);
+    /* Default to larger visual size (120rem * 0.05 = 6rem) */
+    transform: scale(0.05);
     opacity: 1;
     will-change: transform, opacity;
     /* Optimization */
@@ -386,8 +387,8 @@ a {
     }
 
     100% {
-        transform: scale(0.0333);
-        /* Normal visual size */
+        transform: scale(0.05);
+        /* Larger visual size */
         opacity: 1;
     }
 }
