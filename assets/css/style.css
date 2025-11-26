@@ -336,9 +336,13 @@ a {
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 120rem;
+    /* Massive base size for vector quality */
     margin-bottom: var(--spacing-sm);
     color: white;
+    /* Prevent layout issues with huge text */
+    line-height: 1;
+    white-space: nowrap;
 }
 
 .hero h2 {
@@ -350,27 +354,31 @@ a {
 
 /* Scroll Animation for Hero Title */
 .scroll-animate {
-    transition: transform 0.3s ease-out,
-        opacity 0.3s ease-out;
+    transition: transform 0.1s linear, opacity 0.1s linear;
+    /* Faster, linear for smoother scroll sync */
     transform-origin: center center;
-    /* Default to normal size */
-    transform: scale(1);
+    /* Default to normal visual size (120rem * 0.0333 ≈ 4rem) */
+    transform: scale(0.0333);
     opacity: 1;
+    will-change: transform, opacity;
+    /* Optimization */
 }
 
 /* Initial load animation */
 .scroll-animate.initial-load {
-    animation: zoomToNormal 0.8s ease-out forwards;
+    animation: zoomToNormal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes zoomToNormal {
     0% {
-        transform: scale(0.1);
+        transform: scale(0.001);
+        /* Tiny dot */
         opacity: 0;
     }
 
     100% {
-        transform: scale(1);
+        transform: scale(0.0333);
+        /* Normal visual size */
         opacity: 1;
     }
 }
