@@ -338,11 +338,20 @@ a {
 .hero h1 {
     font-size: 120rem;
     /* Massive base size for vector quality */
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 8rem;
+    /* Visual spacing for the scaled-down text */
     color: white;
     /* Prevent layout issues with huge text */
-    line-height: 1;
+    line-height: 0;
+    /* Collapse layout height */
+    height: 0;
+    /* Collapse layout height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
+    pointer-events: none;
+    /* Prevent huge invisible box from blocking clicks */
 }
 
 .hero h2 {
