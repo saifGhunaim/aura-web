@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const translations = {
         en: {
             brand: "AURA",
+            nav_about_us: "About Us",
             nav_philosophy: "Philosophy",
             nav_signature: "Signature",
             nav_portfolio: "Portfolio",
@@ -72,10 +73,23 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_tagline: "Where calmness takes root in every opulent detail.",
             contact_title: "Contact Us",
             contact_subtitle: "Invest in opulent serenity for your space. We would be delighted to begin the journey of crafting your architectural sanctuary.",
-            contact_btn: "Send Us Your Vision!"
+            contact_btn: "Send Us Your Vision!",
+            about_us_title: "About AURA",
+            about_us_intro: "At AURA, we see design as the art of building sanctuaries. Our philosophy is rooted in the concept of \"Opulent Serenity\": the delicate balance between bold luxury and absolute tranquility. We reject visual noise in favor of organic lines, natural materials, and exquisite details that whisper sophistication.",
+            about_us_vision_title: "Our Vision",
+            about_us_vision: "To become the primary reference for creating spaces that breathe, inspire, and immerse their inhabitants in a profound sense of peace and rootedness.",
+            about_us_values_title: "Our Core Values",
+            about_us_value_1_title: "Serenity:",
+            about_us_value_1_desc: "Commitment to designs that soothe the soul",
+            about_us_value_2_title: "Rooted:",
+            about_us_value_2_desc: "Preserving material authenticity and the warmth of place",
+            about_us_value_3_title: "Boldness:",
+            about_us_value_3_desc: "Challenging the conventional through masterful surprises in texture and light",
+            about_us_tagline: "AURA: We Design Life."
         },
         ar: {
             brand: "AURA",
+            nav_about_us: "من نحن",
             nav_philosophy: "الفلسفة",
             nav_signature: "البصمة",
             nav_portfolio: "المعرض",
@@ -96,7 +110,19 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_tagline: "حيث يتجذر الهدوء في كل تفصيل مترف.",
             contact_title: "تواصل معنا",
             contact_subtitle: "استثمر في الهدوء المترف لمساحتك. يسعدنا أن نبدأ رحلة صياغة ملاذك المعماري.",
-            contact_btn: "أرسل لنا رؤيتك!"
+            contact_btn: "أرسل لنا رؤيتك!",
+            about_us_title: "AURA عن",
+            about_us_intro: "في AURA، نرى التصميم فناً لبناء الملاذات. فلسفتنا متجذرة في مفهوم \"الهدوء المترف\": التوازن الدقيق بين الفخامة الجريئة والسكينة المطلقة. نرفض الضجيج البصري لصالح الخطوط العضوية والمواد الطبيعية والتفاصيل الرائعة التي تهمس بالرقي.",
+            about_us_vision_title: "رؤيتنا",
+            about_us_vision: "أن نصبح المرجع الأساسي لخلق مساحات تتنفس، تلهم، وتغمر سكانها بإحساس عميق بالسلام والتجذر.",
+            about_us_values_title: "قيمنا الأساسية",
+            about_us_value_1_title: "السكينة:",
+            about_us_value_1_desc: "الالتزام بتصاميم تهدئ الروح",
+            about_us_value_2_title: "التجذر:",
+            about_us_value_2_desc: "الحفاظ على أصالة المواد ودفء المكان",
+            about_us_value_3_title: "الجرأة:",
+            about_us_value_3_desc: "تحدي التقليدي من خلال مفاجآت بارعة في الملمس والضوء",
+            about_us_tagline: "AURA: We Design Life."
         }
     };
 
